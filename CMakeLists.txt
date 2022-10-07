@@ -9,6 +9,7 @@ file(GLOB SOURCES "src/main.cpp" "lib/*.cpp")
 #find_library(OpenGL REQUIRED)
 #find_library(glfw3 libglfw3.a PATH ${CMAKE_SOURCE_DIR}/include/GLFW)
 find_package(glfw3 REQUIRED)
+
 set(EXT_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(EXT_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
 
