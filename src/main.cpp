@@ -1,7 +1,7 @@
 #include<iostream>
 #include<stdlib.h>
 #include"window.h"
-#include"vec2.h"
+#include"maths.h"
 
 #define LOG(x) std::cout<<x<<std::endl
 
@@ -17,9 +17,9 @@ int main(){
     double x, y;
     
     vec2 a(1, 2);
-    vec2 b(3,4);
+    vec2 b(4, 5);
     
-    vec2 c = a / b;
+    vec2 c = a + b;
     std::cout<<a<<std::endl;
     std::cout<<b<<std::endl;    
     std::cout<<c<<std::endl;       
