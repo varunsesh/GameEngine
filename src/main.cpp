@@ -1,6 +1,5 @@
 #include<iostream>
 #include<stdlib.h>
-#include "entity.h"
 #include"window.h"
 
 #define LOG(x) std::cout<<x<<std::endl
@@ -13,10 +12,14 @@ int main(){
     
     Window window = Window(800,600, "Engine Window");
     glClearColor(0.2f, 0.3f, 0.8f, 1.0f);
-
+    double x, y;
+    
     while(!window.closed()){
         window.clear();
-        if(window.isKeyPressed(GLFW_KEY_A)){
+        x = window.getCursorPosX();
+        y = window.getCursorPosY();
+        std::cout<<"(" << x << ", " <<y<<")"<<std::endl;
+        if(window.isKeyPressed(GLFW_KEY_A) || window.isMousePressed(GLFW_MOUSE_BUTTON_LEFT)){
             std::cout<<"Pressed!!"<<std::endl;
         }
         glBegin(GL_TRIANGLES);

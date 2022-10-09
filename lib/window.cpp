@@ -11,6 +11,8 @@ namespace sparky{ namespace graphics{
     }
 
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+    void cursor_position_callback(GLFWwindow* window, double xpos, double ypos);
+    void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 
     bool Window::init() {
         
@@ -27,7 +29,10 @@ namespace sparky{ namespace graphics{
         for(int i = 0; i<MAX_KEYS; i++){
             this->m_Keys[i] = false;
         }
-        
+        for(int i = 0; i<MAX_BUTTONS; i++){
+            this->m_Buttons[i] = false;
+        }
+
         glfwSetWindowUserPointer(m_Window, this);
         glfwMakeContextCurrent(m_Window);
         if (!m_Window)
@@ -47,7 +52,9 @@ namespace sparky{ namespace graphics{
         glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);
         glViewport(0,0,m_Width, m_Height);
         
+        glfwSetCursorPosCallback(m_Window, cursor_position_callback);
         glfwSetKeyCallback(m_Window, key_callback);
+        glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
         glfwPollEvents(); 
     }
 
@@ -64,13 +71,34 @@ namespace sparky{ namespace graphics{
         return m_Keys[key];
     }
 
+    bool Window::isMousePressed(int button){
+        return m_Buttons[button];
+    }
+
+    double Window::getCursorPosX(){
+        return xpos;
+    }
+
+    double Window::getCursorPosY(){
+        return ypos;
+    }
+
     void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods){
         Window *win = (Window*)glfwGetWindowUserPointer(window);
         win->m_Keys[key] = action !=GLFW_RELEASE;
     }
 
     void cursor_position_callback(GLFWwindow* window, double xpos, double ypos){
-        
+        Window *win = (Window*)glfwGetWindowUserPointer(window);
+        win->xpos = xpos;
+        win->ypos = ypos;
+
+    }
+
+    void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+    {
+        Window *win = (Window*)glfwGetWindowUserPointer(window);
+        win->m_Buttons[button] = action != GLFW_RELEASE;
     }
 
 }}
