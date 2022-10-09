@@ -17,12 +17,18 @@ int main(){
     double x, y;
     
     vec2 a(1, 2);
+    vec2 b(3,4);
+    
+    vec2 c = a / b;
     std::cout<<a<<std::endl;
+    std::cout<<b<<std::endl;    
+    std::cout<<c<<std::endl;       
 
     while(!window.closed()){
         window.clear();
         x = window.getCursorPosX();
         y = window.getCursorPosY();
+        
         // std::cout<<"(" << x << ", " <<y<<")"<<std::endl;
         // if(window.isKeyPressed(GLFW_KEY_A) || window.isMousePressed(GLFW_MOUSE_BUTTON_LEFT)){
         //     std::cout<<"Pressed!!"<<std::endl;
